@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>درباره ما و تماس با ما - طلای رفیع</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #b8860b;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+            --dark-gray: #333;
+            --light-gray: #e0e0e0;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .contact-info span {
+            margin-left: 20px;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            margin-left: 15px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .logo span {
+            color: var(--black);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons a {
+            color: var(--black);
+            font-size: 20px;
+            margin-left: 20px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .header-icons a:hover {
+            color: var(--gold);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--gold);
+            color: var(--white);
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 20px 0;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+        
+        .breadcrumb span {
+            color: var(--gold);
+        }
+        
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin: 30px 0 50px;
+        }
+        
+        .page-title h1 {
+            font-size: 2.5rem;
+            color: var(--black);
+            margin-bottom: 15px;
+        }
+        
+        .page-title p {
+            color: #777;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* About & Contact Section */
+        .about-contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin: 40px 0;
+        }
+        
+        @media (max-width: 992px) {
+            .about-contact-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* About Us */
+        .about-us {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+        
+        .about-us h2 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .about-us h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+        
+        .about-us p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--gray);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        
+        .stat-text {
+            font-size: 1rem;
+            color: var(--dark-gray);
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .mission-card, .vision-card {
+            background-color: var(--gray);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .mission-card h3, .vision-card h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .mission-card p, .vision-card p {
+            line-height: 1.7;
+        }
+        
+        .mission-icon, .vision-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        /* Contact Us */
+        .contact-us {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-us h2 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .contact-us h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+        
+        .contact-info-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .contact-info-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-left: 15px;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-details p, .contact-details a {
+            color: #777;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-details a:hover {
+            color: var(--gold);
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            margin-top: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 2px solid var(--gold);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--gold);
+        }
+        
+        /* Map */
+        .map-container {
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 30px;
+            background-color: var(--gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #777;
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: var(--gray);
+            padding: 60px 0;
+            margin: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--black);
+            display: inline-block;
+            padding: 0 20px;
+            background-color: var(--gray);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 2px;
+            background-color: var(--gold);
+            z-index: 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            margin: 60px 0;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 60px;
+            color: var(--gold);
+            opacity: 0.3;
+            font-family: serif;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: 15px;
+        }
+        
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+        
+        .footer-column p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-right: 5px;
+        }
+        
+        .contact-info-footer {
+            list-style: none;
+        }
+        
+        .contact-info-footer li {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info-footer i {
+            color: var(--gold);
+            margin-left: 10px;
+            min-width: 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .top-bar-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info span {
+                margin: 5px 0;
+            }
+            
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 15px;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-title h1 {
+                font-size: 2rem;
+            }
+            
+            .about-us, .contact-us {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> 021-12345678</span>
+                    <span><i class="fas fa-envelope"></i> info@tala-refie.com</span>
+                    <span><i class="fas fa-map-marker-alt"></i> تهران، خیابان ولیعصر</span>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container main-header">
+            <div class="logo">طلای <span>رفیع</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">خانه</a></li>
+                    <li><a href="#">محصولات</a></li>
+                    <li><a href="#">دسته‌بندی‌ها</a></li>
+                    <li><a href="#" class="active">درباره ما</a></li>
+                    <li><a href="#" class="active">تماس با ما</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
+                <a href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">خانه</a> / 
+            <span>درباره ما و تماس با ما</span>
+        </div>
+    </div>
+
+    <!-- Page Title -->
+    <div class="container">
+        <div class="page-title">
+            <h1>درباره ما و تماس با ما</h1>
+            <p>اطلاعات کامل درباره فروشگاه طلای رفیع و راه‌های تماس با ما</p>
+        </div>
+    </div>
+
+    <!-- About & Contact Section -->
+    <div class="container">
+        <div class="about-contact-section">
+            <!-- About Us -->
+            <div class="about-us">
+                <h2>درباره ما</h2>
+                <p>
+                    فروشگاه طلای رفیع با بیش از ۲۰ سال سابقه درخشان در زمینه فروش طلا، نقره و الماس، یکی از معتبرترین و شناخته‌شده‌ترین فروشگاه‌های جواهرات در ایران است. ما همواره تلاش کرده‌ایم تا با ارائه محصولات با کیفیت و خدمات بی‌نظیر، رضایت کامل مشتریان خود را جلب کنیم.
+                </p>
+                <p>
+                    تیم ما متشکل از متخصصان مجرب در زمینه طلا و جواهرات است که همواره در تلاش‌اند تا بهترین محصولات را با طراحی‌های منحصر به فرد و کیفیت بالا به مشتریان عزیز ارائه دهند. ما افتخار می‌کنیم که توانسته‌ایم اعتماد هزاران مشتری را جلب کنیم.
+                </p>
+                
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">۲۰+</div>
+                        <div class="stat-text">سال تجربه</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">۱۵۰۰۰+</div>
+                        <div class="stat-text">مشتری راضی</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">۵۰۰۰+</div>
+                        <div class="stat-text">محصول متنوع</div>
+                    </div>
+                </div>
+                
+                <div class="mission-vision">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>ماموریت ما</h3>
+                        <p>
+                            ارائه بهترین محصولات طلا و جواهرات با کیفیت بالا و طراحی‌های منحصر به فرد به مشتریان عزیز در سراسر کشور.
+                        </p>
+                    </div>
+                    <div class="vision-card">
+                        <div class="vision-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>چشم‌انداز ما</h3>
+                        <p>
+                            تبدیل شدن به یکی از معتبرترین و شناخته‌شده‌ترین برندهای طلا و جواهرات در منطقه خاورمیانه.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Us -->
+            <div class="contact-us">
+                <h2>تماس با ما</h2>
+                <ul class="contact-info-list">
+                    <li>
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>آدرس</h4>
+                            <p>تهران، خیابان ولیعصر، پلاک ۱۲۳، طبقه ۲</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>تلفن</h4>
+                            <p>۰۲۱-۱۲۳۴۵۶۷۸</p>
+                            <p>۰۹۱۲-۳۴۵۶۷۸۹</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>ایمیل</h4>
+                            <a href="mailto:info@tala-refie.com">info@tala-refie.com</a>
+                            <a href="mailto:support@tala-refie.com">support@tala-refie.com</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>ساعات کاری</h4>
+                            <p>شنبه تا پنجشنبه: ۹:۰۰ تا ۲۱:۰۰</p>
+                            <p>جمعه: ۱۰:۰۰ تا ۱۸:۰۰</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="contact-form">
+                    <h3>ارسال پیام</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">نام و نام خانوادگی</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">ایمیل</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">موضوع</label>
+                            <input type="text" id="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">پیام شما</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">ارسال پیام</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map -->
+    <div class="container">
+        <div class="map-container">
+            <p>نقشه موقعیت فروشگاه طلای رفیع</p>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>ویژگی‌های ما</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>ضمانت اصالت</h3>
+                    <p>تمام محصولات دارای گارانتی اصالت و کیفیت می‌باشند</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>ارسال رایگان</h3>
+                    <p>ارسال رایگان برای خریدهای بالای ۵ میلیون تومان</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>پشتیبانی ۲۴ ساعته</h3>
+                    <p>تیم پشتیبانی ما همیشه آماده کمک به شماست</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h3>بازگشت وجه</h3>
+                    <p>امکان بازگشت وجه تا ۳۰ روز پس از خرید</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="container testimonials">
+        <div class="section-title">
+            <h2>نظرات مشتریان</h2>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">کیفیت محصولات فوق‌العاده است. انگشتری که خریداری کردم کاملاً مطابق با توضیحات بود و بسته‌بندی آن نیز بسیار زیبا و لوکس بود.</p>
+                <div class="testimonial-author">
+                    <div class="author-image">
+                        <img src="https://placehold.co/50x50/cccccc/ffffff?text=س" alt="سارا محمدی">
+                    </div>
+                    <div class="author-info">
+                        <h4>سارا محمدی</h4>
+                        <p>مشتری وفادار</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">خدمات پس از فروش عالی و پرسنل بسیار حرفه‌ای. خرید از این فروشگاه تجربه‌ای بی‌نظیر بود. قطعاً دوباره خرید خواهم کرد.</p>
+                <div class="testimonial-author">
+                    <div class="author-image">
+                        <img src="https://placehold.co/50x50/cccccc/ffffff?text=م" alt="محمد رضایی">
+                    </div>
+                    <div class="author-info">
+                        <h4>محمد رضایی</h4>
+                        <p>مشتری وفادار</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">تنوع محصولات بسیار زیاد و قیمت‌های مناسب. سرعت ارسال نیز بسیار بالا بود. از تمامی دوستان توصیه می‌کنم این فروشگاه را امتحان کنند.</p>
+                <div class="testimonial-author">
+                    <div class="author-image">
+                        <img src="https://placehold.co/50x50/cccccc/ffffff?text=ف" alt="فاطمه احمدی">
+                    </div>
+                    <div class="author-info">
+                        <h4>فاطمه احمدی</h4>
+                        <p>مشتری جدید</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>طلای رفیع</h3>
+                    <p>فروشگاه طلا و جواهرات با بیش از ۲۰ سال سابقه درخشان در زمینه فروش طلا، نقره و الماس با بالاترین کیفیت و طراحی‌های منحصر به فرد.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>لینک‌های مفید</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">خانه</a></li>
+                        <li><a href="#">محصولات</a></li>
+                        <li><a href="#">درباره ما</a></li>
+                        <li><a href="#">تماس با ما</a></li>
+                        <li><a href="#">قوانین و مقررات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>دسته‌بندی‌ها</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">انگشتر طلا</a></li>
+                        <li><a href="#">گردنبند الماس</a></li>
+                        <li><a href="#">گوشواره طلا</a></li>
+                        <li><a href="#">ساعت لوکس</a></li>
+                        <li><a href="#">سرویس طلا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>تماس با ما</h3>
+                    <ul class="contact-info-footer">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>تهران، خیابان ولیعصر، پلاک ۱۲۳</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@tala-refie.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>شنبه تا پنجشنبه: ۹ تا ۲۱</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; ۱۴۰۲ طلای رفیع. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Contact form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // Simple validation
+                if (name && email && subject && message) {
+                    alert('پیام شما با موفقیت ارسال شد. از تماس شما سپاسگزاریم.');
+                    contactForm.reset();
+                } else {
+                    alert('لطفاً تمامی فیلدهای مورد نیاز را پر کنید.');
+                }
+            });
+            
+            // Cart count functionality
+            const cartCount = document.querySelector('.cart-count');
+            let count = 3;
+            
+            // Simulate adding to cart
+            const addToCartButtons = document.querySelectorAll('.btn');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (!this.closest('#contactForm')) {
+                        count++;
+                        cartCount.textContent = count;
+                        
+                        // Add animation effect
+                        this.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            this.style.transform = 'scale(1)';
+                        }, 300);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>امنیت حساب - پنل کاربر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #b8860b;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+            --dark-gray: #333;
+            --light-gray: #e0e0e0;
+            --blue: #3498db;
+            --green: #27ae60;
+            --red: #e74c3c;
+            --orange: #f39c12;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--gray);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .contact-info span {
+            margin-left: 20px;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            margin-left: 15px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .logo span {
+            color: var(--black);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons a {
+            color: var(--black);
+            font-size: 20px;
+            margin-left: 20px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .header-icons a:hover {
+            color: var(--gold);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--gold);
+            color: var(--white);
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 20px 0;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+        
+        .breadcrumb span {
+            color: var(--gold);
+        }
+        
+        /* User Dashboard */
+        .user-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        @media (max-width: 992px) {
+            .user-dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Sidebar */
+        .user-sidebar {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+        
+        .user-profile {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 15px;
+            border: 3px solid var(--gold);
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-name {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .profile-email {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .user-menu {
+            list-style: none;
+        }
+        
+        .user-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .user-menu li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: var(--dark-gray);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .user-menu li a:hover,
+        .user-menu li a.active {
+            background-color: var(--gold);
+            color: var(--white);
+        }
+        
+        .user-menu li a i {
+            margin-left: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content */
+        .user-content {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .content-header h2 {
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+        
+        /* Security Sections */
+        .security-sections {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .security-section {
+            background-color: var(--gray);
+            border-radius: 10px;
+            padding: 25px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .section-header h3 {
+            font-size: 1.3rem;
+            color: var(--dark-gray);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-header h3 i {
+            color: var(--gold);
+        }
+        
+        /* Password Change Form */
+        .password-form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 500px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .password-strength {
+            margin-top: 10px;
+        }
+        
+        .strength-bar {
+            height: 5px;
+            background-color: var(--light-gray);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+            transition: var(--transition);
+        }
+        
+        .strength-fill.weak {
+            width: 33%;
+            background-color: var(--red);
+        }
+        
+        .strength-fill.medium {
+            width: 66%;
+            background-color: var(--orange);
+        }
+        
+        .strength-fill.strong {
+            width: 100%;
+            background-color: var(--green);
+        }
+        
+        .strength-text {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 2px solid var(--gold);
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--gold);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--gold);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+        
+        .btn-gray {
+            background-color: var(--light-gray);
+            border-color: var(--light-gray);
+            color: var(--dark-gray);
+        }
+        
+        .btn-gray:hover {
+            background-color: transparent;
+            color: var(--dark-gray);
+        }
+        
+        .btn-green {
+            background-color: var(--green);
+            border-color: var(--green);
+            color: var(--white);
+        }
+        
+        .btn-green:hover {
+            background-color: transparent;
+            color: var(--green);
+        }
+        
+        /* Two Factor Authentication */
+        .two-factor-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 10px;
+        }
+        
+        .two-factor-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+        
+        .two-factor-text {
+            flex: 1;
+        }
+        
+        .two-factor-text h4 {
+            margin-bottom: 8px;
+            color: var(--dark-gray);
+        }
+        
+        .two-factor-text p {
+            color: #777;
+            line-height: 1.6;
+        }
+        
+        .two-factor-status {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .status-active {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-inactive {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        /* Login History */
+        .login-history {
+            overflow-x: auto;
+        }
+        
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        
+        .history-table th,
+        .history-table td {
+            padding: 15px;
+            text-align: right;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .history-table th {
+            background-color: var(--white);
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+        
+        .history-table tr:hover {
+            background-color: rgba(212, 175, 55, 0.05);
+        }
+        
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .status-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-failed {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        /* Security Tips */
+        .security-tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .tip-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .tip-icon {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .tip-card h4 {
+            margin-bottom: 10px;
+            color: var(--dark-gray);
+        }
+        
+        .tip-card p {
+            color: #777;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .top-bar-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info span {
+                margin: 5px 0;
+            }
+            
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 15px;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .two-factor-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .form-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .history-table th,
+            .history-table td {
+                padding: 10px 5px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> 021-12345678</span>
+                    <span><i class="fas fa-envelope"></i> info@tala-refie.com</span>
+                    <span><i class="fas fa-map-marker-alt"></i> تهران، خیابان ولیعصر</span>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container main-header">
+            <div class="logo">طلای <span>رفیع</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">خانه</a></li>
+                    <li><a href="#">محصولات</a></li>
+                    <li><a href="#">دسته‌بندی‌ها</a></li>
+                    <li><a href="#">درباره ما</a></li>
+                    <li><a href="#">تماس با ما</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#">
+                    <i class="fas fa-user"></i>
+                    <span class="cart-count">5</span>
+                </a>
+                <a href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">خانه</a> / 
+            <a href="#">پنل کاربر</a> / 
+            <span>امنیت حساب</span>
+        </div>
+    </div>
+
+    <!-- User Dashboard -->
+    <div class="container">
+        <div class="user-dashboard">
+            <!-- Sidebar -->
+            <div class="user-sidebar">
+                <div class="user-profile">
+                    <div class="profile-image">
+                        <img src="https://placehold.co/100x100/D4AF37/ffffff?text=ک" alt="کاربر">
+                    </div>
+                    <div class="profile-name">کاربر طلایی</div>
+                    <div class="profile-email">karbar@example.com</div>
+                </div>
+                
+                <ul class="user-menu">
+                    <li><a href="#"><i class="fas fa-tachometer-alt"></i> داشبورد</a></li>
+                    <li><a href="#"><i class="fas fa-shopping-cart"></i> سفارشات من</a></li>
+                    <li><a href="#"><i class="fas fa-heart"></i> علاقه‌مندی‌ها</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> آدرس‌ها</a></li>
+                    <li><a href="#"><i class="fas fa-user"></i> اطلاعات حساب</a></li>
+                    <li><a href="#" class="active"><i class="fas fa-lock"></i> امنیت</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> خروج</a></li>
+                </ul>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="user-content">
+                <div class="content-header">
+                    <h2>امنیت حساب</h2>
+                    <div>
+                        <button class="btn">
+                            <i class="fas fa-shield-alt"></i> گزارش امنیتی
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="security-sections">
+                    <!-- Change Password -->
+                    <div class="security-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-key"></i> تغییر رمز عبور</h3>
+                        </div>
+                        
+                        <form class="password-form" id="passwordForm">
+                            <div class="form-group">
+                                <label for="currentPassword">رمز عبور فعلی</label>
+                                <input type="password" id="currentPassword" placeholder="رمز عبور فعلی خود را وارد کنید" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newPassword">رمز عبور جدید</label>
+                                <input type="password" id="newPassword" placeholder="رمز عبور جدید خود را وارد کنید" required>
+                                <div class="password-strength">
+                                    <div class="strength-bar">
+                                        <div class="strength-fill" id="strengthFill"></div>
+                                    </div>
+                                    <div class="strength-text" id="strengthText">رمز عبور را وارد کنید</div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirmPassword">تأیید رمز عبور جدید</label>
+                                <input type="password" id="confirmPassword" placeholder="رمز عبور جدید را مجدداً وارد کنید" required>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-green">
+                                    <i class="fas fa-save"></i> تغییر رمز عبور
+                                </button>
+                                <button type="button" class="btn btn-gray">
+                                    <i class="fas fa-times"></i> انصراف
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Two Factor Authentication -->
+                    <div class="security-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-mobile-alt"></i> تأیید دو مرحله‌ای</h3>
+                        </div>
+                        
+                        <div class="two-factor-info">
+                            <div class="two-factor-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="two-factor-text">
+                                <h4>تأیید دو مرحله‌ای</h4>
+                                <p>با فعال‌سازی این گزینه، امنیت حساب کاربری خود را افزایش دهید. پس از ورود با رمز عبور، کد تأیید به شماره موبایل یا ایمیل شما ارسال خواهد شد.</p>
+                            </div>
+                            <div class="two-factor-status status-active">
+                                فعال
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn">
+                                <i class="fas fa-qrcode"></i> نمایش کد QR
+                            </button>
+                            <button class="btn btn-outline">
+                                <i class="fas fa-toggle-off"></i> غیرفعال‌سازی
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Login History -->
+                    <div class="security-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-history"></i> تاریخچه ورود</h3>
+                        </div>
+                        
+                        <div class="login-history">
+                            <table class="history-table">
+                                <thead>
+                                    <tr>
+                                        <th>تاریخ و زمان</th>
+                                        <th>آدرس IP</th>
+                                        <th>مرورگر</th>
+                                        <th>وضعیت</th>
+                                        <th>عملیات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>۱۴۰۲/۰۵/۲۸ - ۱۴:۳۰</td>
+                                        <td>192.168.1.100</td>
+                                        <td>Chrome 114</td>
+                                        <td><span class="status-badge status-success">موفق</span></td>
+                                        <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">جزئیات</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>۱۴۰۲/۰۵/۲۷ - ۰۹:۱۵</td>
+                                        <td>192.168.1.100</td>
+                                        <td>Firefox 113</td>
+                                        <td><span class="status-badge status-success">موفق</span></td>
+                                        <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">جزئیات</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>۱۴۰۲/۰۵/۲۵ - ۱۶:۴۵</td>
+                                        <td>10.0.0.50</td>
+                                        <td>Chrome 114</td>
+                                        <td><span class="status-badge status-failed">ناموفق</span></td>
+                                        <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">جزئیات</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>۱۴۰۲/۰۵/۲۴ - ۱۱:۲۰</td>
+                                        <td>192.168.1.100</td>
+                                        <td>Safari 16</td>
+                                        <td><span class="status-badge status-success">موفق</span></td>
+                                        <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">جزئیات</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>۱۴۰۲/۰۵/۲۲ - ۰۸:۰۵</td>
+                                        <td>172.16.0.25</td>
+                                        <td>Edge 113</td>
+                                        <td><span class="status-badge status-success">موفق</span></td>
+                                        <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">جزئیات</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Security Tips -->
+                    <div class="security-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-lightbulb"></i> نکات امنیتی</h3>
+                        </div>
+                        
+                        <div class="security-tips">
+                            <div class="tip-card">
+                                <div class="tip-icon">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <h4>رمز عبور قوی</h4>
+                                <p>از ترکیب حروف بزرگ و کوچک، اعداد و کاراکترهای خاص در رمز عبور خود استفاده کنید.</p>
+                            </div>
+                            
+                            <div class="tip-card">
+                                <div class="tip-icon">
+                                    <i class="fas fa-sync"></i>
+                                </div>
+                                <h4>به‌روزرسانی منظم</h4>
+                                <p>رمز عبور خود را به‌طور منظم تغییر دهید و از استفاده مجدد از رمزهای عبور قدیمی خودداری کنید.</p>
+                            </div>
+                            
+                            <div class="tip-card">
+                                <div class="tip-icon">
+                                    <i class="fas fa-user-secret"></i>
+                                </div>
+                                <h4>عدم اشتراک‌گذاری</h4>
+                                <p>اطلاعات حساب خود را با دیگران به اشتراک نگذارید و از ورود به حساب در دستگاه‌های عمومی خودداری کنید.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--black); color: var(--white); padding: 60px 0 30px; margin-top: 60px;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 40px;">
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        طلای رفیع
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <p style="margin-bottom: 20px; opacity: 0.8; line-height: 1.6;">
+                        فروشگاه طلا و جواهرات با بیش از ۲۰ سال سابقه درخشان در زمینه فروش طلا، نقره و الماس با بالاترین کیفیت و طراحی‌های منحصر به فرد.
+                    </p>
+                    <div style="display: flex;">
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        لینک‌های مفید
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">خانه</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">محصولات</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">درباره ما</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">تماس با ما</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">قوانین و مقررات</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        دسته‌بندی‌ها
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">انگشتر طلا</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">گردنبند الماس</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">گوشواره طلا</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">ساعت لوکس</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">سرویس طلا</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        تماس با ما
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-map-marker-alt" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>تهران، خیابان ولیعصر، پلاک ۱۲۳</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-phone" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-envelope" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>info@tala-refie.com</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-clock" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>شنبه تا پنجشنبه: ۹ تا ۲۱</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 30px; border-top: 1px solid #333; opacity: 0.7;">
+                <p>&copy; ۱۴۰۲ طلای رفیع. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu active state
+            const menuItems = document.querySelectorAll('.user-menu a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Password strength checker
+            const newPasswordInput = document.getElementById('newPassword');
+            const strengthFill = document.getElementById('strengthFill');
+            const strengthText = document.getElementById('strengthText');
+            
+            newPasswordInput.addEventListener('input', function() {
+                const password = this.value;
+                let strength = 0;
+                let text = '';
+                
+                if (password.length === 0) {
+                    strengthFill.className = 'strength-fill';
+                    strengthText.textContent = 'رمز عبور را وارد کنید';
+                    return;
+                }
+                
+                if (password.length >= 8) strength++;
+                if (/[A-Z]/.test(password)) strength++;
+                if (/[0-9]/.test(password)) strength++;
+                if (/[^A-Za-z0-9]/.test(password)) strength++;
+                
+                strengthFill.className = 'strength-fill';
+                
+                if (strength <= 2) {
+                    strengthFill.classList.add('weak');
+                    text = 'ضعیف';
+                } else if (strength <= 3) {
+                    strengthFill.classList.add('medium');
+                    text = 'متوسط';
+                } else {
+                    strengthFill.classList.add('strong');
+                    text = 'قوی';
+                }
+                
+                strengthText.textContent = `قدرت رمز عبور: ${text}`;
+            });
+            
+            // Password form submission
+            const passwordForm = document.getElementById('passwordForm');
+            passwordForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const currentPassword = document.getElementById('currentPassword').value;
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                if (newPassword !== confirmPassword) {
+                    alert('رمز عبور جدید و تأیید آن یکسان نیستند!');
+                    return;
+                }
+                
+                if (newPassword.length < 8) {
+                    alert('رمز عبور جدید باید حداقل 8 کاراکتر باشد!');
+                    return;
+                }
+                
+                alert('رمز عبور با موفقیت تغییر کرد!');
+                passwordForm.reset();
+                strengthFill.className = 'strength-fill';
+                strengthText.textContent = 'رمز عبور را وارد کنید';
+            });
+            
+            // Two factor buttons
+            const twoFactorButtons = document.querySelectorAll('.security-section:nth-child(2) .btn');
+            twoFactorButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.classList.contains('btn-outline')) {
+                        if (confirm('آیا از غیرفعال‌سازی تأیید دو مرحله‌ای اطمینان دارید؟')) {
+                            const statusElement = document.querySelector('.two-factor-status');
+                            statusElement.className = 'two-factor-status status-inactive';
+                            statusElement.textContent = 'غیرفعال';
+                            this.innerHTML = '<i class="fas fa-toggle-on"></i> فعال‌سازی';
+                            this.classList.remove('btn-outline');
+                        }
+                    } else {
+                        alert('نمایش کد QR برای اپلیکیشن تأیید دو مرحله‌ای...');
+                    }
+                });
+            });
+            
+            // Login history buttons
+            const detailButtons = document.querySelectorAll('.history-table .btn');
+            detailButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('نمایش جزئیات ورود...');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

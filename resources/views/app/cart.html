@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سبد خرید - طلای رفیع</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #b8860b;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+            --dark-gray: #333;
+            --light-gray: #e0e0e0;
+            --red: #e74c3c;
+            --green: #27ae60;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .contact-info span {
+            margin-left: 20px;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            margin-left: 15px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .logo span {
+            color: var(--black);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons a {
+            color: var(--black);
+            font-size: 20px;
+            margin-left: 20px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .header-icons a:hover {
+            color: var(--gold);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--gold);
+            color: var(--white);
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 20px 0;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+        
+        .breadcrumb span {
+            color: var(--gold);
+        }
+        
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin: 30px 0 50px;
+        }
+        
+        .page-title h1 {
+            font-size: 2.5rem;
+            color: var(--black);
+            margin-bottom: 15px;
+        }
+        
+        .page-title p {
+            color: #777;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Cart Section */
+        .cart-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        @media (max-width: 992px) {
+            .cart-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Cart Items */
+        .cart-items {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .cart-header {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+            padding: 15px 0;
+            border-bottom: 2px solid var(--light-gray);
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .cart-item {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--light-gray);
+            align-items: center;
+        }
+        
+        .product-info-cart {
+            display: flex;
+            align-items: center;
+            text-align: right;
+        }
+        
+        .product-image-cart {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-left: 15px;
+        }
+        
+        .product-image-cart img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-details-cart h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .product-details-cart p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .price-cart, .total-cart {
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .quantity-cart {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            background-color: var(--light-gray);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .quantity-btn:hover {
+            background-color: var(--gold);
+            color: var(--white);
+        }
+        
+        .quantity-input {
+            width: 50px;
+            height: 35px;
+            text-align: center;
+            border: none;
+            outline: none;
+        }
+        
+        .remove-item {
+            text-align: center;
+        }
+        
+        .remove-btn {
+            background-color: transparent;
+            border: none;
+            color: var(--red);
+            cursor: pointer;
+            font-size: 18px;
+            transition: var(--transition);
+        }
+        
+        .remove-btn:hover {
+            color: #c0392b;
+            transform: scale(1.1);
+        }
+        
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 2px solid var(--gold);
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--gold);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--gold);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+        
+        .btn-gray {
+            background-color: var(--light-gray);
+            border-color: var(--light-gray);
+            color: var(--dark-gray);
+        }
+        
+        .btn-gray:hover {
+            background-color: transparent;
+            color: var(--dark-gray);
+        }
+        
+        /* Cart Summary */
+        .cart-summary {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+        
+        .summary-title {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin: 25px 0;
+            padding-top: 20px;
+            border-top: 2px solid var(--light-gray);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        .summary-total span:last-child {
+            color: var(--gold);
+        }
+        
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--green);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #219653;
+            transform: translateY(-2px);
+        }
+        
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .continue-shopping:hover {
+            color: var(--gold);
+        }
+        
+        /* Empty Cart */
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-cart-icon {
+            font-size: 5rem;
+            color: var(--light-gray);
+            margin-bottom: 20px;
+        }
+        
+        .empty-cart h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+        
+        .empty-cart p {
+            color: #777;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Coupon */
+        .coupon-section {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .coupon-form {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .coupon-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .coupon-input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .coupon-btn {
+            padding: 12px 20px;
+            background-color: var(--dark-gray);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .coupon-btn:hover {
+            background-color: var(--black);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .top-bar-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info span {
+                margin: 5px 0;
+            }
+            
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 15px;
+            }
+            
+            .cart-header, .cart-item {
+                grid-template-columns: 2fr 1fr 1fr;
+                gap: 10px;
+            }
+            
+            .cart-header div:nth-child(4),
+            .cart-header div:nth-child(5),
+            .cart-item div:nth-child(4),
+            .cart-item div:nth-child(5) {
+                display: none;
+            }
+            
+            .product-info-cart {
+                grid-column: span 2;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-title h1 {
+                font-size: 2rem;
+            }
+            
+            .cart-header, .cart-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .product-info-cart {
+                grid-column: auto;
+                justify-content: center;
+            }
+            
+            .cart-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .cart-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> 021-12345678</span>
+                    <span><i class="fas fa-envelope"></i> info@tala-refie.com</span>
+                    <span><i class="fas fa-map-marker-alt"></i> تهران، خیابان ولیعصر</span>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container main-header">
+            <div class="logo">طلای <span>رفیع</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">خانه</a></li>
+                    <li><a href="#">محصولات</a></li>
+                    <li><a href="#">دسته‌بندی‌ها</a></li>
+                    <li><a href="#">درباره ما</a></li>
+                    <li><a href="#">تماس با ما</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
+                <a href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">5</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">خانه</a> / 
+            <span>سبد خرید</span>
+        </div>
+    </div>
+
+    <!-- Page Title -->
+    <div class="container">
+        <div class="page-title">
+            <h1>سبد خرید</h1>
+            <p>محصولات انتخابی شما</p>
+        </div>
+    </div>
+
+    <!-- Cart Section -->
+    <div class="container">
+        <div class="cart-section">
+            <!-- Cart Items -->
+            <div class="cart-items">
+                <div class="cart-header">
+                    <div>محصول</div>
+                    <div>قیمت</div>
+                    <div>تعداد</div>
+                    <div>مجموع</div>
+                    <div>حذف</div>
+                </div>
+                
+                <!-- Cart Item 1 -->
+                <div class="cart-item">
+                    <div class="product-info-cart">
+                        <div class="product-image-cart">
+                            <img src="https://placehold.co/80x80/D4AF37/ffffff?text=انگشتر" alt="انگشتر طلای الماس">
+                        </div>
+                        <div class="product-details-cart">
+                            <h3>انگشتر طلای 18 عیار الماس</h3>
+                            <p>انگشتر، طلای 18 عیار</p>
+                        </div>
+                    </div>
+                    <div class="price-cart">۱۰,۸۰۰,۰۰۰ تومان</div>
+                    <div class="quantity-cart">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="text" class="quantity-input" value="1" readonly>
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
+                    <div class="total-cart">۱۰,۸۰۰,۰۰۰ تومان</div>
+                    <div class="remove-item">
+                        <button class="remove-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Cart Item 2 -->
+                <div class="cart-item">
+                    <div class="product-info-cart">
+                        <div class="product-image-cart">
+                            <img src="https://placehold.co/80x80/D4AF37/ffffff?text=گردنبند" alt="گردنبند طلای الماس">
+                        </div>
+                        <div class="product-details-cart">
+                            <h3>گردنبند طلای 18 عیار الماس</h3>
+                            <p>گردنبند، طلای 18 عیار</p>
+                        </div>
+                    </div>
+                    <div class="price-cart">۲۲,۵۰۰,۰۰۰ تومان</div>
+                    <div class="quantity-cart">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="text" class="quantity-input" value="1" readonly>
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
+                    <div class="total-cart">۲۲,۵۰۰,۰۰۰ تومان</div>
+                    <div class="remove-item">
+                        <button class="remove-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Cart Item 3 -->
+                <div class="cart-item">
+                    <div class="product-info-cart">
+                        <div class="product-image-cart">
+                            <img src="https://placehold.co/80x80/D4AF37/ffffff?text=گوشواره" alt="گوشواره طلای ساده">
+                        </div>
+                        <div class="product-details-cart">
+                            <h3>گوشواره طلای 18 عیار ساده</h3>
+                            <p>گوشواره، طلای 18 عیار</p>
+                        </div>
+                    </div>
+                    <div class="price-cart">۳,۵۰۰,۰۰۰ تومان</div>
+                    <div class="quantity-cart">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="text" class="quantity-input" value="2" readonly>
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
+                    <div class="total-cart">۷,۰۰۰,۰۰۰ تومان</div>
+                    <div class="remove-item">
+                        <button class="remove-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="cart-actions">
+                    <button class="btn btn-gray">
+                        <i class="fas fa-arrow-right"></i> ادامه خرید
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-sync"></i> به‌روزرسانی سبد
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Cart Summary -->
+            <div class="cart-summary">
+                <h3 class="summary-title">خلاصه سفارش</h3>
+                
+                <div class="summary-item">
+                    <span>جمع کل محصولات:</span>
+                    <span>۳۴,۳۰۰,۰۰۰ تومان</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span>هزینه ارسال:</span>
+                    <span>رایگان</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span>مالیات:</span>
+                    <span>۱,۷۱۵,۰۰۰ تومان</span>
+                </div>
+                
+                <div class="coupon-section">
+                    <h4>کد تخفیف</h4>
+                    <div class="coupon-form">
+                        <input type="text" class="coupon-input" placeholder="کد تخفیف خود را وارد کنید">
+                        <button class="coupon-btn">اعمال</button>
+                    </div>
+                </div>
+                
+                <div class="summary-total">
+                    <span>مجموع:</span>
+                    <span>۳۶,۰۱۵,۰۰۰ تومان</span>
+                </div>
+                
+                <button class="checkout-btn">
+                    <i class="fas fa-credit-card"></i> تسویه حساب
+                </button>
+                
+                <a href="#" class="continue-shopping">
+                    <i class="fas fa-arrow-left"></i> ادامه خرید
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--black); color: var(--white); padding: 60px 0 30px; margin-top: 60px;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 40px;">
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        طلای رفیع
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <p style="margin-bottom: 20px; opacity: 0.8; line-height: 1.6;">
+                        فروشگاه طلا و جواهرات با بیش از ۲۰ سال سابقه درخشان در زمینه فروش طلا، نقره و الماس با بالاترین کیفیت و طراحی‌های منحصر به فرد.
+                    </p>
+                    <div style="display: flex;">
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        لینک‌های مفید
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">خانه</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">محصولات</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">درباره ما</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">تماس با ما</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">قوانین و مقررات</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        دسته‌بندی‌ها
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">انگشتر طلا</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">گردنبند الماس</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">گوشواره طلا</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">ساعت لوکس</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">سرویس طلا</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        تماس با ما
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-map-marker-alt" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>تهران، خیابان ولیعصر، پلاک ۱۲۳</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-phone" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-envelope" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>info@tala-refie.com</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-clock" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>شنبه تا پنجشنبه: ۹ تا ۲۱</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 30px; border-top: 1px solid #333; opacity: 0.7;">
+                <p>&copy; ۱۴۰۲ طلای رفیع. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Quantity selectors
+            const quantitySelectors = document.querySelectorAll('.quantity-selector');
+            
+            quantitySelectors.forEach(selector => {
+                const minusBtn = selector.querySelector('.minus');
+                const plusBtn = selector.querySelector('.plus');
+                const input = selector.querySelector('.quantity-input');
+                
+                minusBtn.addEventListener('click', function() {
+                    let value = parseInt(input.value);
+                    if (value > 1) {
+                        input.value = value - 1;
+                        updateCartTotal();
+                    }
+                });
+                
+                plusBtn.addEventListener('click', function() {
+                    let value = parseInt(input.value);
+                    input.value = value + 1;
+                    updateCartTotal();
+                });
+            });
+            
+            // Remove item buttons
+            const removeButtons = document.querySelectorAll('.remove-btn');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const cartItem = this.closest('.cart-item');
+                    cartItem.style.opacity = '0';
+                    setTimeout(() => {
+                        cartItem.remove();
+                        updateCartTotal();
+                        updateCartCount();
+                    }, 300);
+                });
+            });
+            
+            // Update cart total function
+            function updateCartTotal() {
+                // This is a simplified version - in a real application, you would calculate based on actual prices
+                const cartItems = document.querySelectorAll('.cart-item');
+                let totalItems = 0;
+                
+                cartItems.forEach(item => {
+                    const quantity = parseInt(item.querySelector('.quantity-input').value);
+                    totalItems += quantity;
+                });
+                
+                // Update cart count
+                document.querySelector('.cart-count').textContent = totalItems;
+            }
+            
+            // Update cart count
+            function updateCartCount() {
+                const cartItems = document.querySelectorAll('.cart-item');
+                document.querySelector('.cart-count').textContent = cartItems.length;
+            }
+            
+            // Checkout button
+            const checkoutBtn = document.querySelector('.checkout-btn');
+            checkoutBtn.addEventListener('click', function() {
+                alert('انتقال به صفحه تسویه حساب...');
+            });
+            
+            // Coupon button
+            const couponBtn = document.querySelector('.coupon-btn');
+            couponBtn.addEventListener('click', function() {
+                const couponInput = document.querySelector('.coupon-input');
+                if (couponInput.value.trim() !== '') {
+                    alert('کد تخفیف اعمال شد!');
+                } else {
+                    alert('لطفاً کد تخفیف را وارد کنید.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

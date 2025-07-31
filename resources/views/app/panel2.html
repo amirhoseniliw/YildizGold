@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>علاقه‌مندی‌ها - پنل کاربر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #b8860b;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+            --dark-gray: #333;
+            --light-gray: #e0e0e0;
+            --blue: #3498db;
+            --green: #27ae60;
+            --red: #e74c3c;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--gray);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .contact-info span {
+            margin-left: 20px;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            margin-left: 15px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .logo span {
+            color: var(--black);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons a {
+            color: var(--black);
+            font-size: 20px;
+            margin-left: 20px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .header-icons a:hover {
+            color: var(--gold);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--gold);
+            color: var(--white);
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 20px 0;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+        
+        .breadcrumb span {
+            color: var(--gold);
+        }
+        
+        /* User Dashboard */
+        .user-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        @media (max-width: 992px) {
+            .user-dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Sidebar */
+        .user-sidebar {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+        
+        .user-profile {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 15px;
+            border: 3px solid var(--gold);
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-name {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .profile-email {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .user-menu {
+            list-style: none;
+        }
+        
+        .user-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .user-menu li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: var(--dark-gray);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .user-menu li a:hover,
+        .user-menu li a.active {
+            background-color: var(--gold);
+            color: var(--white);
+        }
+        
+        .user-menu li a i {
+            margin-left: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content */
+        .user-content {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .content-header h2 {
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+        
+        .wishlist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .wishlist-count {
+            color: #777;
+            font-size: 1.1rem;
+        }
+        
+        /* Wishlist Items */
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .wishlist-item {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .wishlist-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .remove-wishlist {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 30px;
+            height: 30px;
+            background-color: var(--red);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+            z-index: 2;
+        }
+        
+        .remove-wishlist:hover {
+            background-color: #c0392b;
+            transform: scale(1.1);
+        }
+        
+        .product-image-wishlist {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image-wishlist img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .wishlist-item:hover .product-image-wishlist img {
+            transform: scale(1.1);
+        }
+        
+        .product-info-wishlist {
+            padding: 20px;
+        }
+        
+        .product-category-wishlist {
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .product-name-wishlist {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+            height: 50px;
+            overflow: hidden;
+        }
+        
+        .product-price-wishlist {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .price-wishlist {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .old-price-wishlist {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9rem;
+            margin-left: 8px;
+        }
+        
+        .wishlist-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 2px solid var(--gold);
+            cursor: pointer;
+            font-size: 0.9rem;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--gold);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--gold);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+        
+        .btn-cart {
+            background-color: var(--green);
+            border-color: var(--green);
+            color: var(--white);
+        }
+        
+        .btn-cart:hover {
+            background-color: transparent;
+            color: var(--green);
+        }
+        
+        /* Empty Wishlist */
+        .empty-wishlist {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-wishlist-icon {
+            font-size: 5rem;
+            color: var(--light-gray);
+            margin-bottom: 20px;
+        }
+        
+        .empty-wishlist h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+        
+        .empty-wishlist p {
+            color: #777;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .top-bar-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info span {
+                margin: 5px 0;
+            }
+            
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 15px;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .wishlist-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .wishlist-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .wishlist-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> 021-12345678</span>
+                    <span><i class="fas fa-envelope"></i> info@tala-refie.com</span>
+                    <span><i class="fas fa-map-marker-alt"></i> تهران، خیابان ولیعصر</span>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container main-header">
+            <div class="logo">طلای <span>رفیع</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">خانه</a></li>
+                    <li><a href="#">محصولات</a></li>
+                    <li><a href="#">دسته‌بندی‌ها</a></li>
+                    <li><a href="#">درباره ما</a></li>
+                    <li><a href="#">تماس با ما</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#">
+                    <i class="fas fa-user"></i>
+                    <span class="cart-count">5</span>
+                </a>
+                <a href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">خانه</a> / 
+            <a href="#">پنل کاربر</a> / 
+            <span>علاقه‌مندی‌ها</span>
+        </div>
+    </div>
+
+    <!-- User Dashboard -->
+    <div class="container">
+        <div class="user-dashboard">
+            <!-- Sidebar -->
+            <div class="user-sidebar">
+                <div class="user-profile">
+                    <div class="profile-image">
+                        <img src="https://placehold.co/100x100/D4AF37/ffffff?text=ک" alt="کاربر">
+                    </div>
+                    <div class="profile-name">کاربر طلایی</div>
+                    <div class="profile-email">karbar@example.com</div>
+                </div>
+                
+                <ul class="user-menu">
+                    <li><a href="#"><i class="fas fa-tachometer-alt"></i> داشبورد</a></li>
+                    <li><a href="#"><i class="fas fa-shopping-cart"></i> سفارشات من</a></li>
+                    <li><a href="#" class="active"><i class="fas fa-heart"></i> علاقه‌مندی‌ها</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> آدرس‌ها</a></li>
+                    <li><a href="#"><i class="fas fa-user"></i> اطلاعات حساب</a></li>
+                    <li><a href="#"><i class="fas fa-lock"></i> امنیت</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> خروج</a></li>
+                </ul>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="user-content">
+                <div class="content-header">
+                    <h2>علاقه‌مندی‌ها</h2>
+                    <div>
+                        <button class="btn">
+                            <i class="fas fa-share"></i> اشتراک‌گذاری لیست
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="wishlist-header">
+                    <div class="wishlist-count">8 محصول در لیست علاقه‌مندی‌ها</div>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-trash"></i> حذف همه
+                    </button>
+                </div>
+                
+                <!-- Wishlist Items -->
+                <div class="wishlist-grid">
+                    <!-- Wishlist Item 1 -->
+                    <div class="wishlist-item">
+                        <button class="remove-wishlist">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="product-image-wishlist">
+                            <img src="https://placehold.co/250x200/D4AF37/ffffff?text=انگشتر+طلای+الماس" alt="انگشتر طلای الماس">
+                        </div>
+                        <div class="product-info-wishlist">
+                            <div class="product-category-wishlist">انگشتر</div>
+                            <h3 class="product-name-wishlist">انگشتر طلای 18 عیار الماس طبیعی</h3>
+                            <div class="product-price-wishlist">
+                                <div>
+                                    <span class="old-price-wishlist">۱۲,۰۰۰,۰۰۰ تومان</span>
+                                    <span class="price-wishlist">۱۰,۸۰۰,۰۰۰ تومان</span>
+                                </div>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-eye"></i> مشاهده
+                                </button>
+                                <button class="btn btn-cart">
+                                    <i class="fas fa-shopping-cart"></i> خرید
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wishlist Item 2 -->
+                    <div class="wishlist-item">
+                        <button class="remove-wishlist">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="product-image-wishlist">
+                            <img src="https://placehold.co/250x200/D4AF37/ffffff?text=گردنبند+طلای+الماس" alt="گردنبند طلای الماس">
+                        </div>
+                        <div class="product-info-wishlist">
+                            <div class="product-category-wishlist">گردنبند</div>
+                            <h3 class="product-name-wishlist">گردنبند طلای 18 عیار الماس طبیعی</h3>
+                            <div class="product-price-wishlist">
+                                <div>
+                                    <span class="old-price-wishlist">۲۵,۰۰۰,۰۰۰ تومان</span>
+                                    <span class="price-wishlist">۲۲,۵۰۰,۰۰۰ تومان</span>
+                                </div>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-eye"></i> مشاهده
+                                </button>
+                                <button class="btn btn-cart">
+                                    <i class="fas fa-shopping-cart"></i> خرید
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wishlist Item 3 -->
+                    <div class="wishlist-item">
+                        <button class="remove-wishlist">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="product-image-wishlist">
+                            <img src="https://placehold.co/250x200/D4AF37/ffffff?text=گوشواره+طلای+ساده" alt="گوشواره طلای ساده">
+                        </div>
+                        <div class="product-info-wishlist">
+                            <div class="product-category-wishlist">گوشواره</div>
+                            <h3 class="product-name-wishlist">گوشواره طلای 18 عیار ساده</h3>
+                            <div class="product-price-wishlist">
+                                <div>
+                                    <span class="price-wishlist">۳,۵۰۰,۰۰۰ تومان</span>
+                                </div>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-eye"></i> مشاهده
+                                </button>
+                                <button class="btn btn-cart">
+                                    <i class="fas fa-shopping-cart"></i> خرید
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wishlist Item 4 -->
+                    <div class="wishlist-item">
+                        <button class="remove-wishlist">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="product-image-wishlist">
+                            <img src="https://placehold.co/250x200/D4AF37/ffffff?text=ساعت+طلای+الماس" alt="ساعت طلای الماس">
+                        </div>
+                        <div class="product-info-wishlist">
+                            <div class="product-category-wishlist">ساعت</div>
+                            <h3 class="product-name-wishlist">ساعت طلای 18 عیار الماس</h3>
+                            <div class="product-price-wishlist">
+                                <div>
+                                    <span class="price-wishlist">۴۵,۰۰۰,۰۰۰ تومان</span>
+                                </div>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-eye"></i> مشاهده
+                                </button>
+                                <button class="btn btn-cart">
+                                    <i class="fas fa-shopping-cart"></i> خرید
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wishlist Item 5 -->
+                    <div class="wishlist-item">
+                        <button class="remove-wishlist">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="product-image-wishlist">
+                            <img src="https://placehold.co/250x200/D4AF37/ffffff?text=دستبند+طلای+الماس" alt="دستبند طلای الماس">
+                        </div>
+                        <div class="product-info-wishlist">
+                            <div class="product-category-wishlist">دستبند</div>
+                            <h3 class="product-name-wishlist">دستبند طلای 18 عیار الماس طبیعی</h3>
+                            <div class="product-price-wishlist">
+                                <div>
+                                    <span class="price-wishlist">۳۲,۰۰۰,۰۰۰ تومان</span>
+                                </div>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-eye"></i> مشاهده
+                                </button>
+                                <button class="btn btn-cart">
+                                    <i class="fas fa-shopping-cart"></i> خرید
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wishlist Item 6 -->
+                    <div class="wishlist-item">
+                        <button class="remove-wishlist">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="product-image-wishlist">
+                            <img src="https://placehold.co/250x200/D4AF37/ffffff?text=انگشتر+نقره+الماس" alt="انگشتر نقره الماس">
+                        </div>
+                        <div class="product-info-wishlist">
+                            <div class="product-category-wishlist">انگشتر</div>
+                            <h3 class="product-name-wishlist">انگشتر نقره الماس طبیعی</h3>
+                            <div class="product-price-wishlist">
+                                <div>
+                                    <span class="price-wishlist">۸,۵۰۰,۰۰۰ تومان</span>
+                                </div>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-eye"></i> مشاهده
+                                </button>
+                                <button class="btn btn-cart">
+                                    <i class="fas fa-shopping-cart"></i> خرید
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wishlist Item 7 -->
+                    <div class="wishlist-item">
+                        <button class="remove-wishlist">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="product-image-wishlist">
+                            <img src="https://placehold.co/250x200/D4AF37/ffffff?text=گردنبند+نقره+ساده" alt="گردنبند نقره ساده">
+                        </div>
+                        <div class="product-info-wishlist">
+                            <div class="product-category-wishlist">گردنبند</div>
+                            <h3 class="product-name-wishlist">گردنبند نقره ساده</h3>
+                            <div class="product-price-wishlist">
+                                <div>
+                                    <span class="price-wishlist">۱,۲۰۰,۰۰۰ تومان</span>
+                                </div>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-eye"></i> مشاهده
+                                </button>
+                                <button class="btn btn-cart">
+                                    <i class="fas fa-shopping-cart"></i> خرید
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wishlist Item 8 -->
+                    <div class="wishlist-item">
+                        <button class="remove-wishlist">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="product-image-wishlist">
+                            <img src="https://placehold.co/250x200/D4AF37/ffffff?text=گوشواره+طلای+الماس" alt="گوشواره طلای الماس">
+                        </div>
+                        <div class="product-info-wishlist">
+                            <div class="product-category-wishlist">گوشواره</div>
+                            <h3 class="product-name-wishlist">گوشواره طلای 18 عیار الماس</h3>
+                            <div class="product-price-wishlist">
+                                <div>
+                                    <span class="old-price-wishlist">۱۸,۰۰۰,۰۰۰ تومان</span>
+                                    <span class="price-wishlist">۱۶,۲۰۰,۰۰۰ تومان</span>
+                                </div>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-eye"></i> مشاهده
+                                </button>
+                                <button class="btn btn-cart">
+                                    <i class="fas fa-shopping-cart"></i> خرید
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--black); color: var(--white); padding: 60px 0 30px; margin-top: 60px;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 40px;">
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        طلای رفیع
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <p style="margin-bottom: 20px; opacity: 0.8; line-height: 1.6;">
+                        فروشگاه طلا و جواهرات با بیش از ۲۰ سال سابقه درخشان در زمینه فروش طلا، نقره و الماس با بالاترین کیفیت و طراحی‌های منحصر به فرد.
+                    </p>
+                    <div style="display: flex;">
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        لینک‌های مفید
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">خانه</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">محصولات</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">درباره ما</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">تماس با ما</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">قوانین و مقررات</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        دسته‌بندی‌ها
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">انگشتر طلا</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">گردنبند الماس</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">گوشواره طلا</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">ساعت لوکس</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">سرویس طلا</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        تماس با ما
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-map-marker-alt" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>تهران، خیابان ولیعصر، پلاک ۱۲۳</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-phone" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-envelope" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>info@tala-refie.com</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-clock" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>شنبه تا پنجشنبه: ۹ تا ۲۱</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 30px; border-top: 1px solid #333; opacity: 0.7;">
+                <p>&copy; ۱۴۰۲ طلای رفیع. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu active state
+            const menuItems = document.querySelectorAll('.user-menu a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Remove wishlist buttons
+            const removeButtons = document.querySelectorAll('.remove-wishlist');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const wishlistItem = this.closest('.wishlist-item');
+                    wishlistItem.style.opacity = '0';
+                    wishlistItem.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        wishlistItem.remove();
+                        updateWishlistCount();
+                    }, 300);
+                });
+            });
+            
+            // View product buttons
+            const viewButtons = document.querySelectorAll('.btn-outline');
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('مشاهده محصول...');
+                });
+            });
+            
+            // Add to cart buttons
+            const cartButtons = document.querySelectorAll('.btn-cart');
+            cartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('محصول به سبد خرید اضافه شد!');
+                });
+            });
+            
+            // Update wishlist count
+            function updateWishlistCount() {
+                const wishlistItems = document.querySelectorAll('.wishlist-item');
+                const countElement = document.querySelector('.wishlist-count');
+                countElement.textContent = `${wishlistItems.length} محصول در لیست علاقه‌مندی‌ها`;
+            }
+            
+            // Share wishlist button
+            const shareBtn = document.querySelector('.btn');
+            if (shareBtn) {
+                shareBtn.addEventListener('click', function() {
+                    alert('اشتراک‌گذاری لیست علاقه‌مندی‌ها...');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

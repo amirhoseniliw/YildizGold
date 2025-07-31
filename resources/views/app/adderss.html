@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آدرس‌ها - پنل کاربر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #b8860b;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+            --dark-gray: #333;
+            --light-gray: #e0e0e0;
+            --blue: #3498db;
+            --green: #27ae60;
+            --red: #e74c3c;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--gray);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .contact-info span {
+            margin-left: 20px;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            margin-left: 15px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .logo span {
+            color: var(--black);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons a {
+            color: var(--black);
+            font-size: 20px;
+            margin-left: 20px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .header-icons a:hover {
+            color: var(--gold);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--gold);
+            color: var(--white);
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 20px 0;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+        
+        .breadcrumb span {
+            color: var(--gold);
+        }
+        
+        /* User Dashboard */
+        .user-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        @media (max-width: 992px) {
+            .user-dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Sidebar */
+        .user-sidebar {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+        
+        .user-profile {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 15px;
+            border: 3px solid var(--gold);
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-name {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .profile-email {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .user-menu {
+            list-style: none;
+        }
+        
+        .user-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .user-menu li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: var(--dark-gray);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .user-menu li a:hover,
+        .user-menu li a.active {
+            background-color: var(--gold);
+            color: var(--white);
+        }
+        
+        .user-menu li a i {
+            margin-left: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content */
+        .user-content {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .content-header h2 {
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+        
+        /* Address Cards */
+        .addresses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .addresses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .address-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--light-gray);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .address-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+        
+        .address-card.default {
+            border-color: var(--gold);
+            background-color: rgba(212, 175, 55, 0.05);
+        }
+        
+        .address-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .address-title {
+            font-weight: 500;
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+        }
+        
+        .default-badge {
+            background-color: var(--gold);
+            color: var(--white);
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .address-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .action-btn:hover {
+            background-color: var(--gold);
+            color: var(--white);
+        }
+        
+        .edit-btn:hover {
+            background-color: var(--blue);
+        }
+        
+        .delete-btn:hover {
+            background-color: var(--red);
+        }
+        
+        .set-default-btn:hover {
+            background-color: var(--green);
+        }
+        
+        .address-details {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .address-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .info-item i {
+            color: var(--gold);
+            margin-left: 8px;
+            font-size: 1rem;
+        }
+        
+        /* Add Address Form */
+        .add-address-form {
+            background-color: var(--gray);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .form-title {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--gold);
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 2px solid var(--gold);
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--gold);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--gold);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+        
+        .btn-gray {
+            background-color: var(--light-gray);
+            border-color: var(--light-gray);
+            color: var(--dark-gray);
+        }
+        
+        .btn-gray:hover {
+            background-color: transparent;
+            color: var(--dark-gray);
+        }
+        
+        /* Empty Addresses */
+        .empty-addresses {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-addresses-icon {
+            font-size: 5rem;
+            color: var(--light-gray);
+            margin-bottom: 20px;
+        }
+        
+        .empty-addresses h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+        
+        .empty-addresses p {
+            color: #777;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .top-bar-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info span {
+                margin: 5px 0;
+            }
+            
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 15px;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .address-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .address-actions {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> 021-12345678</span>
+                    <span><i class="fas fa-envelope"></i> info@tala-refie.com</span>
+                    <span><i class="fas fa-map-marker-alt"></i> تهران، خیابان ولیعصر</span>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container main-header">
+            <div class="logo">طلای <span>رفیع</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">خانه</a></li>
+                    <li><a href="#">محصولات</a></li>
+                    <li><a href="#">دسته‌بندی‌ها</a></li>
+                    <li><a href="#">درباره ما</a></li>
+                    <li><a href="#">تماس با ما</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#">
+                    <i class="fas fa-user"></i>
+                    <span class="cart-count">5</span>
+                </a>
+                <a href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">خانه</a> / 
+            <a href="#">پنل کاربر</a> / 
+            <span>آدرس‌ها</span>
+        </div>
+    </div>
+
+    <!-- User Dashboard -->
+    <div class="container">
+        <div class="user-dashboard">
+            <!-- Sidebar -->
+            <div class="user-sidebar">
+                <div class="user-profile">
+                    <div class="profile-image">
+                        <img src="https://placehold.co/100x100/D4AF37/ffffff?text=ک" alt="کاربر">
+                    </div>
+                    <div class="profile-name">کاربر طلایی</div>
+                    <div class="profile-email">karbar@example.com</div>
+                </div>
+                
+                <ul class="user-menu">
+                    <li><a href="#"><i class="fas fa-tachometer-alt"></i> داشبورد</a></li>
+                    <li><a href="#"><i class="fas fa-shopping-cart"></i> سفارشات من</a></li>
+                    <li><a href="#"><i class="fas fa-heart"></i> علاقه‌مندی‌ها</a></li>
+                    <li><a href="#" class="active"><i class="fas fa-map-marker-alt"></i> آدرس‌ها</a></li>
+                    <li><a href="#"><i class="fas fa-user"></i> اطلاعات حساب</a></li>
+                    <li><a href="#"><i class="fas fa-lock"></i> امنیت</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> خروج</a></li>
+                </ul>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="user-content">
+                <div class="content-header">
+                    <h2>آدرس‌های من</h2>
+                    <div>
+                        <button class="btn" id="toggleFormBtn">
+                            <i class="fas fa-plus"></i> افزودن آدرس جدید
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Address Cards -->
+                <div class="addresses-grid">
+                    <!-- Address 1 - Default -->
+                    <div class="address-card default">
+                        <div class="address-header">
+                            <div class="address-title">
+                                آدرس اصلی
+                                <span class="default-badge">پیش‌فرض</span>
+                            </div>
+                            <div class="address-actions">
+                                <button class="action-btn edit-btn" title="ویرایش">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="address-details">
+                            تهران، خیابان ولیعصر، پلاک 123، طبقه 2، واحد 4<br>
+                            منطقه 1، ناحیه شمالی
+                        </div>
+                        <div class="address-info">
+                            <div class="info-item">
+                                <i class="fas fa-phone"></i>
+                                <span>021-12345678</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>1234567890</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Address 2 -->
+                    <div class="address-card">
+                        <div class="address-header">
+                            <div class="address-title">آدرس کار</div>
+                            <div class="address-actions">
+                                <button class="action-btn set-default-btn" title="تنظیم به عنوان پیش‌فرض">
+                                    <i class="fas fa-star"></i>
+                                </button>
+                                <button class="action-btn edit-btn" title="ویرایش">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="address-details">
+                            تهران، بلوار میرداماد، پلاک 456، طبقه 5<br>
+                            ساختمان الماس، واحد 12
+                        </div>
+                        <div class="address-info">
+                            <div class="info-item">
+                                <i class="fas fa-phone"></i>
+                                <span>021-87654321</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>0987654321</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Address 3 -->
+                    <div class="address-card">
+                        <div class="address-header">
+                            <div class="address-title">آدرس والدین</div>
+                            <div class="address-actions">
+                                <button class="action-btn set-default-btn" title="تنظیم به عنوان پیش‌فرض">
+                                    <i class="fas fa-star"></i>
+                                </button>
+                                <button class="action-btn edit-btn" title="ویرایش">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="address-details">
+                            اصفهان، میدان نقش جهان، خیابان قصر، پلاک 78<br>
+                            کوچه گلستان، ساختمان طلا
+                        </div>
+                        <div class="address-info">
+                            <div class="info-item">
+                                <i class="fas fa-phone"></i>
+                                <span>031-34567890</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>5432109876</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add Address Form -->
+                <div class="add-address-form" id="addressForm" style="display: none;">
+                    <h3 class="form-title">افزودن آدرس جدید</h3>
+                    <form id="addressFormElement">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="addressTitle">عنوان آدرس</label>
+                                <input type="text" id="addressTitle" placeholder="مثال: آدرس خانه" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="province">استان</label>
+                                <select id="province" required>
+                                    <option value="">انتخاب استان</option>
+                                    <option value="tehran">تهران</option>
+                                    <option value="isfahan">اصفهان</option>
+                                    <option value="shiraz">شیراز</option>
+                                    <option value="mashhad">مشهد</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">شهر</label>
+                                <input type="text" id="city" placeholder="نام شهر" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="postalCode">کد پستی</label>
+                                <input type="text" id="postalCode" placeholder="کد پستی 10 رقمی" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fullAddress">آدرس کامل</label>
+                            <textarea id="fullAddress" rows="3" placeholder="آدرس کامل شامل خیابان، کوچه، پلاک و واحد" required></textarea>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="phoneNumber">تلفن تماس</label>
+                                <input type="text" id="phoneNumber" placeholder="شماره تلفن ثابت" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="mobileNumber">تلفن همراه</label>
+                                <input type="text" id="mobileNumber" placeholder="شماره موبایل">
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn">
+                                <i class="fas fa-save"></i> ذخیره آدرس
+                            </button>
+                            <button type="button" class="btn btn-gray" id="cancelFormBtn">
+                                <i class="fas fa-times"></i> انصراف
+                            </button>
+                            <label class="btn btn-outline" style="cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-star"></i>
+                                <input type="checkbox" style="margin-left: 5px;"> آدرس پیش‌فرض باشد
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--black); color: var(--white); padding: 60px 0 30px; margin-top: 60px;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 40px;">
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        طلای رفیع
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <p style="margin-bottom: 20px; opacity: 0.8; line-height: 1.6;">
+                        فروشگاه طلا و جواهرات با بیش از ۲۰ سال سابقه درخشان در زمینه فروش طلا، نقره و الماس با بالاترین کیفیت و طراحی‌های منحصر به فرد.
+                    </p>
+                    <div style="display: flex;">
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        لینک‌های مفید
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">خانه</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">محصولات</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">درباره ما</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">تماس با ما</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">قوانین و مقررات</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        دسته‌بندی‌ها
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">انگشتر طلا</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">گردنبند الماس</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">گوشواره طلا</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">ساعت لوکس</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">سرویس طلا</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        تماس با ما
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-map-marker-alt" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>تهران، خیابان ولیعصر، پلاک ۱۲۳</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-phone" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-envelope" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>info@tala-refie.com</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-clock" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>شنبه تا پنجشنبه: ۹ تا ۲۱</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 30px; border-top: 1px solid #333; opacity: 0.7;">
+                <p>&copy; ۱۴۰۲ طلای رفیع. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu active state
+            const menuItems = document.querySelectorAll('.user-menu a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Toggle address form
+            const toggleFormBtn = document.getElementById('toggleFormBtn');
+            const addressForm = document.getElementById('addressForm');
+            const cancelFormBtn = document.getElementById('cancelFormBtn');
+            
+            toggleFormBtn.addEventListener('click', function() {
+                if (addressForm.style.display === 'none') {
+                    addressForm.style.display = 'block';
+                    this.innerHTML = '<i class="fas fa-minus"></i> بستن فرم';
+                } else {
+                    addressForm.style.display = 'none';
+                    this.innerHTML = '<i class="fas fa-plus"></i> افزودن آدرس جدید';
+                }
+            });
+            
+            cancelFormBtn.addEventListener('click', function() {
+                addressForm.style.display = 'none';
+                toggleFormBtn.innerHTML = '<i class="fas fa-plus"></i> افزودن آدرس جدید';
+            });
+            
+            // Address form submission
+            const addressFormElement = document.getElementById('addressFormElement');
+            addressFormElement.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('آدرس جدید با موفقیت اضافه شد!');
+                addressFormElement.reset();
+                addressForm.style.display = 'none';
+                toggleFormBtn.innerHTML = '<i class="fas fa-plus"></i> افزودن آدرس جدید';
+            });
+            
+            // Action buttons
+            const editButtons = document.querySelectorAll('.edit-btn');
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('ویرایش آدرس...');
+                });
+            });
+            
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (confirm('آیا از حذف این آدرس اطمینان دارید؟')) {
+                        const addressCard = this.closest('.address-card');
+                        addressCard.style.opacity = '0';
+                        addressCard.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            addressCard.remove();
+                        }, 300);
+                    }
+                });
+            });
+            
+            const setDefaultButtons = document.querySelectorAll('.set-default-btn');
+            setDefaultButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove default class from all cards
+                    document.querySelectorAll('.address-card').forEach(card => {
+                        card.classList.remove('default');
+                        const badge = card.querySelector('.default-badge');
+                        if (badge) {
+                            badge.remove();
+                        }
+                    });
+                    
+                    // Add default class to clicked card
+                    const addressCard = this.closest('.address-card');
+                    addressCard.classList.add('default');
+                    
+                    // Add default badge
+                    const addressTitle = addressCard.querySelector('.address-title');
+                    const badge = document.createElement('span');
+                    badge.className = 'default-badge';
+                    badge.textContent = 'پیش‌فرض';
+                    addressTitle.appendChild(badge);
+                    
+                    alert('آدرس به عنوان پیش‌فرض تنظیم شد.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اطلاعات حساب - پنل کاربر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #b8860b;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+            --dark-gray: #333;
+            --light-gray: #e0e0e0;
+            --blue: #3498db;
+            --green: #27ae60;
+            --red: #e74c3c;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--gray);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .contact-info span {
+            margin-left: 20px;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            margin-left: 15px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .logo span {
+            color: var(--black);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons a {
+            color: var(--black);
+            font-size: 20px;
+            margin-left: 20px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .header-icons a:hover {
+            color: var(--gold);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--gold);
+            color: var(--white);
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 20px 0;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+        
+        .breadcrumb span {
+            color: var(--gold);
+        }
+        
+        /* User Dashboard */
+        .user-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        @media (max-width: 992px) {
+            .user-dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Sidebar */
+        .user-sidebar {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+        
+        .user-profile {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 15px;
+            border: 3px solid var(--gold);
+            position: relative;
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .change-avatar {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: var(--gold);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 12px;
+            transition: var(--transition);
+        }
+        
+        .change-avatar:hover {
+            background-color: var(--dark-gold);
+        }
+        
+        .profile-name {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .profile-email {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .user-menu {
+            list-style: none;
+        }
+        
+        .user-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .user-menu li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: var(--dark-gray);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .user-menu li a:hover,
+        .user-menu li a.active {
+            background-color: var(--gold);
+            color: var(--white);
+        }
+        
+        .user-menu li a i {
+            margin-left: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content */
+        .user-content {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .content-header h2 {
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+        
+        /* Profile Sections */
+        .profile-sections {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .profile-section {
+            background-color: var(--gray);
+            border-radius: 10px;
+            padding: 25px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .section-header h3 {
+            font-size: 1.3rem;
+            color: var(--dark-gray);
+        }
+        
+        .edit-section-btn {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        .edit-section-btn:hover {
+            background-color: var(--gold);
+            color: var(--white);
+        }
+        
+        /* Profile Form */
+        .profile-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .form-group input:disabled {
+            background-color: #f8f8f8;
+            cursor: not-allowed;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 2px solid var(--gold);
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--gold);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--gold);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+        
+        .btn-gray {
+            background-color: var(--light-gray);
+            border-color: var(--light-gray);
+            color: var(--dark-gray);
+        }
+        
+        .btn-gray:hover {
+            background-color: transparent;
+            color: var(--dark-gray);
+        }
+        
+        .btn-green {
+            background-color: var(--green);
+            border-color: var(--green);
+            color: var(--white);
+        }
+        
+        .btn-green:hover {
+            background-color: transparent;
+            color: var(--green);
+        }
+        
+        /* Account Info */
+        .account-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .info-item {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .info-label {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        
+        /* Security Section */
+        .security-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .security-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .security-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .security-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .security-card h4 {
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+        }
+        
+        .security-card p {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        /* Notifications */
+        .notifications-list {
+            list-style: none;
+        }
+        
+        .notification-item {
+            padding: 15px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+        
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            margin-left: 15px;
+            flex-shrink: 0;
+        }
+        
+        .notification-content {
+            flex: 1;
+        }
+        
+        .notification-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .notification-text {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        .notification-date {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .top-bar-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info span {
+                margin: 5px 0;
+            }
+            
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 15px;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .profile-form,
+            .account-info,
+            .security-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .form-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> 021-12345678</span>
+                    <span><i class="fas fa-envelope"></i> info@tala-refie.com</span>
+                    <span><i class="fas fa-map-marker-alt"></i> تهران، خیابان ولیعصر</span>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container main-header">
+            <div class="logo">طلای <span>رفیع</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">خانه</a></li>
+                    <li><a href="#">محصولات</a></li>
+                    <li><a href="#">دسته‌بندی‌ها</a></li>
+                    <li><a href="#">درباره ما</a></li>
+                    <li><a href="#">تماس با ما</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#">
+                    <i class="fas fa-user"></i>
+                    <span class="cart-count">5</span>
+                </a>
+                <a href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">خانه</a> / 
+            <a href="#">پنل کاربر</a> / 
+            <span>اطلاعات حساب</span>
+        </div>
+    </div>
+
+    <!-- User Dashboard -->
+    <div class="container">
+        <div class="user-dashboard">
+            <!-- Sidebar -->
+            <div class="user-sidebar">
+                <div class="user-profile">
+                    <div class="profile-image">
+                        <img src="https://placehold.co/100x100/D4AF37/ffffff?text=ک" alt="کاربر">
+                        <div class="change-avatar">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                    </div>
+                    <div class="profile-name">کاربر طلایی</div>
+                    <div class="profile-email">karbar@example.com</div>
+                </div>
+                
+                <ul class="user-menu">
+                    <li><a href="#"><i class="fas fa-tachometer-alt"></i> داشبورد</a></li>
+                    <li><a href="#"><i class="fas fa-shopping-cart"></i> سفارشات من</a></li>
+                    <li><a href="#"><i class="fas fa-heart"></i> علاقه‌مندی‌ها</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> آدرس‌ها</a></li>
+                    <li><a href="#" class="active"><i class="fas fa-user"></i> اطلاعات حساب</a></li>
+                    <li><a href="#"><i class="fas fa-lock"></i> امنیت</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> خروج</a></li>
+                </ul>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="user-content">
+                <div class="content-header">
+                    <h2>اطلاعات حساب</h2>
+                    <div>
+                        <button class="btn">
+                            <i class="fas fa-download"></i> خروجی اطلاعات
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="profile-sections">
+                    <!-- Personal Information -->
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <h3>اطلاعات شخصی</h3>
+                            <button class="edit-section-btn">
+                                <i class="fas fa-edit"></i> ویرایش
+                            </button>
+                        </div>
+                        
+                        <form class="profile-form">
+                            <div class="form-group">
+                                <label for="firstName">نام</label>
+                                <input type="text" id="firstName" value="کاربر" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">نام خانوادگی</label>
+                                <input type="text" id="lastName" value="طلایی" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="nationalCode">کد ملی</label>
+                                <input type="text" id="nationalCode" value="1234567890" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthDate">تاریخ تولد</label>
+                                <input type="date" id="birthDate" value="1990-01-01" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">جنسیت</label>
+                                <select id="gender" disabled>
+                                    <option value="male" selected>مرد</option>
+                                    <option value="female">زن</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">تلفن همراه</label>
+                                <input type="text" id="phone" value="09123456789" disabled>
+                            </div>
+                            
+                            <div class="form-actions" style="grid-column: 1 / -1;">
+                                <button type="button" class="btn btn-green save-btn" style="display: none;">
+                                    <i class="fas fa-save"></i> ذخیره تغییرات
+                                </button>
+                                <button type="button" class="btn btn-gray cancel-btn" style="display: none;">
+                                    <i class="fas fa-times"></i> انصراف
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Account Information -->
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <h3>اطلاعات حساب</h3>
+                            <button class="edit-section-btn">
+                                <i class="fas fa-edit"></i> ویرایش
+                            </button>
+                        </div>
+                        
+                        <div class="account-info">
+                            <div class="info-item">
+                                <div class="info-label">ایمیل</div>
+                                <div class="info-value">karbar@example.com</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">تاریخ عضویت</div>
+                                <div class="info-value">۱۴۰۱/۰۱/۰۱</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">سطح کاربری</div>
+                                <div class="info-value">طلایی</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">امتیاز وفاداری</div>
+                                <div class="info-value">۱,۲۵۰ امتیاز</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Security Section -->
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <h3>امنیت حساب</h3>
+                            <button class="edit-section-btn">
+                                <i class="fas fa-shield-alt"></i> تنظیمات امنیتی
+                            </button>
+                        </div>
+                        
+                        <div class="security-options">
+                            <div class="security-card">
+                                <div class="security-icon">
+                                    <i class="fas fa-key"></i>
+                                </div>
+                                <h4>تغییر رمز عبور</h4>
+                                <p>رمز عبور خود را به‌روز کنید تا حساب کاربری شما ایمن بماند.</p>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-edit"></i> تغییر رمز
+                                </button>
+                            </div>
+                            
+                            <div class="security-card">
+                                <div class="security-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <h4>تأیید دو مرحله‌ای</h4>
+                                <p>امنیت حساب خود را با فعال‌سازی تأیید دو مرحله‌ای افزایش دهید.</p>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-toggle-on"></i> فعال‌سازی
+                                </button>
+                            </div>
+                            
+                            <div class="security-card">
+                                <div class="security-icon">
+                                    <i class="fas fa-history"></i>
+                                </div>
+                                <h4>فعالیت حساب</h4>
+                                <p>آخرین فعالیت‌های حساب خود را مشاهده کنید و ورودهای مشکوک را گزارش کنید.</p>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-eye"></i> مشاهده فعالیت‌ها
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Notifications -->
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <h3>آخرین اعلانات</h3>
+                            <button class="edit-section-btn">
+                                <i class="fas fa-cog"></i> تنظیمات اعلانات
+                            </button>
+                        </div>
+                        
+                        <ul class="notifications-list">
+                            <li class="notification-item">
+                                <div class="notification-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-title">سفارش جدید</div>
+                                    <div class="notification-text">سفارش شما با موفقیت ثبت شد. شماره پیگیری: ORD-2023-015</div>
+                                    <div class="notification-date">۱۴۰۲/۰۵/۲۸ - ۱۴:۳۰</div>
+                                </div>
+                            </li>
+                            <li class="notification-item">
+                                <div class="notification-icon">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-title">ارسال سفارش</div>
+                                    <div class="notification-text">سفارش شما ارسال شد و در مسیر است.</div>
+                                    <div class="notification-date">۱۴۰۲/۰۵/۲۵ - ۰۹:۱۵</div>
+                                </div>
+                            </li>
+                            <li class="notification-item">
+                                <div class="notification-icon">
+                                    <i class="fas fa-gift"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-title">امتیاز وفاداری</div>
+                                    <div class="notification-text">۲۰۰ امتیاز وفاداری به حساب شما اضافه شد.</div>
+                                    <div class="notification-date">۱۴۰۲/۰۵/۲۰ - ۱۶:۴۵</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--black); color: var(--white); padding: 60px 0 30px; margin-top: 60px;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 40px;">
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        طلای رفیع
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <p style="margin-bottom: 20px; opacity: 0.8; line-height: 1.6;">
+                        فروشگاه طلا و جواهرات با بیش از ۲۰ سال سابقه درخشان در زمینه فروش طلا، نقره و الماس با بالاترین کیفیت و طراحی‌های منحصر به فرد.
+                    </p>
+                    <div style="display: flex;">
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" style="color: var(--white); margin-left: 15px; font-size: 16px; transition: var(--transition);">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        لینک‌های مفید
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">خانه</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">محصولات</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">درباره ما</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">تماس با ما</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">قوانین و مقررات</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        دسته‌بندی‌ها
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">انگشتر طلا</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">گردنبند الماس</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">گوشواره طلا</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">ساعت لوکس</a>
+                        </li>
+                        <li style="margin-bottom: 12px;">
+                            <a href="#" style="color: #ccc; text-decoration: none; transition: var(--transition);">سرویس طلا</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                        تماس با ما
+                        <span style="content: ''; position: absolute; bottom: 0; right: 0; width: 50px; height: 2px; background-color: var(--gold);"></span>
+                    </h3>
+                    <ul style="list-style: none;">
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-map-marker-alt" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>تهران، خیابان ولیعصر، پلاک ۱۲۳</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-phone" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-envelope" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>info@tala-refie.com</span>
+                        </li>
+                        <li style="display: flex; margin-bottom: 15px;">
+                            <i class="fas fa-clock" style="color: var(--gold); margin-left: 10px; min-width: 20px;"></i>
+                            <span>شنبه تا پنجشنبه: ۹ تا ۲۱</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 30px; border-top: 1px solid #333; opacity: 0.7;">
+                <p>&copy; ۱۴۰۲ طلای رفیع. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu active state
+            const menuItems = document.querySelectorAll('.user-menu a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Edit section buttons
+            const editButtons = document.querySelectorAll('.edit-section-btn');
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const section = this.closest('.profile-section');
+                    const inputs = section.querySelectorAll('input, select, textarea');
+                    const saveBtn = section.querySelector('.save-btn');
+                    const cancelBtn = section.querySelector('.cancel-btn');
+                    
+                    // Enable inputs
+                    inputs.forEach(input => {
+                        input.disabled = false;
+                    });
+                    
+                    // Show action buttons
+                    if (saveBtn && cancelBtn) {
+                        saveBtn.style.display = 'inline-block';
+                        cancelBtn.style.display = 'inline-block';
+                        this.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Save buttons
+            const saveButtons = document.querySelectorAll('.save-btn');
+            saveButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const section = this.closest('.profile-section');
+                    const inputs = section.querySelectorAll('input, select, textarea');
+                    const editBtn = section.querySelector('.edit-section-btn');
+                    const cancelBtn = section.querySelector('.cancel-btn');
+                    
+                    // Disable inputs
+                    inputs.forEach(input => {
+                        input.disabled = true;
+                    });
+                    
+                    // Hide action buttons
+                    this.style.display = 'none';
+                    if (cancelBtn) cancelBtn.style.display = 'none';
+                    if (editBtn) editBtn.style.display = 'inline-block';
+                    
+                    alert('تغییرات با موفقیت ذخیره شد.');
+                });
+            });
+            
+            // Cancel buttons
+            const cancelButtons = document.querySelectorAll('.cancel-btn');
+            cancelButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const section = this.closest('.profile-section');
+                    const inputs = section.querySelectorAll('input, select, textarea');
+                    const editBtn = section.querySelector('.edit-section-btn');
+                    const saveBtn = section.querySelector('.save-btn');
+                    
+                    // Reset form and disable inputs
+                    const form = section.querySelector('form');
+                    if (form) form.reset();
+                    inputs.forEach(input => {
+                        input.disabled = true;
+                    });
+                    
+                    // Hide action buttons
+                    this.style.display = 'none';
+                    if (saveBtn) saveBtn.style.display = 'none';
+                    if (editBtn) editBtn.style.display = 'inline-block';
+                });
+            });
+            
+            // Security buttons
+            const securityButtons = document.querySelectorAll('.security-card .btn');
+            securityButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const cardTitle = this.closest('.security-card').querySelector('h4').textContent;
+                    alert(`عملیات "${cardTitle}" فعال شد.`);
+                });
+            });
+            
+            // Change avatar
+            const changeAvatar = document.querySelector('.change-avatar');
+            if (changeAvatar) {
+                changeAvatar.addEventListener('click', function() {
+                    alert('انتخاب تصویر جدید...');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
